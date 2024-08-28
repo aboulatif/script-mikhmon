@@ -9,6 +9,8 @@ Intervale = 1d 00:00:00
 /sys sch rem [find where on-event=""];
 /sys scr job rem [find where owner~"sys"]
 
+https://www.tubeguruji.com/tubeguruji-pro
+
 
 
 

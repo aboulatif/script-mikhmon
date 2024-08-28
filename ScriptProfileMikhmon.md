@@ -10,6 +10,7 @@ Intervale = 1d 00:00:00
 /sys scr job rem [find where owner~"sys"]
 
 https://www.tubeguruji.com/tubeguruji-pro
+https://www.youtube.com/watch?v=wL534EBuEPg
 
 
 

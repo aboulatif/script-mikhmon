@@ -1,3 +1,5 @@
+
+
 <?php
 if(substr($validity,-1) == "d"){
   $validity = "   <br>Validité : ".substr($validity,0,-1)." Jour(s)";
@@ -14,13 +16,13 @@ if(substr($timelimit,-1) == "d" & strlen($timelimit) >3){
   $timelimit = "Durée:".(substr($timelimit,0,-1)*7)." Jour(s)";
 }	            	            
 if($getprice == "1500"){ $color = "#FFF";} 
-elseif($getprice == "100"){ $color = "#752CEB";}
-elseif($getprice == "300"){ $color = "#13C013";}
-elseif($getprice == "1000"){ $color = "#E50877";}
-elseif($getprice == "2000"){ $color = "#F75418";}
-elseif($getprice == "5000"){ $color = "#1433FD";}
-elseif($getprice == "8000"){ $color = "#663399";}
-elseif($getprice == "10000"){ $color = "#663399";}
+elseif($getprice == "100"){ $color = "#AAB2BD";}
+elseif($getprice == "300"){ $color = "#37BC9B";}
+elseif($getprice == "500"){ $color = "#DA4453";}
+elseif($getprice == "700"){ $color = "#4A89DC";}
+elseif($getprice == "1500"){ $color = "#F6BB42";}
+elseif($getprice == "3000"){ $color = "#D772AD";}
+elseif($getprice == "5000"){ $color = "#AC92EC";}
 elseif($getprice == "13000"){ $color = "#2E8B57";}
 elseif($getprice == "15000"){ $color = "#2E8B57";}
 elseif($getprice == "17000"){ $color = "#0000FF";}
@@ -44,7 +46,7 @@ else{ $color = "#FF69B4";}?>
 <tbody>	
 <P style=" margin-top:-10px;margin-bottom:5px"></P>
 <tr>
-<td colspan="2" style="font-weight:bold;">DIARRA WIFI</td>
+<td colspan="2" style="font-weight:bold;">MAMBA WIFI</td>
 </tr>
 <td>
 <table style="width:100%;"> 

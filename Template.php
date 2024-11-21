@@ -1,6 +1,5 @@
-
-
-<?php
+ 
+																		<?php
 if(substr($validity,-1) == "d"){
   $validity = "   <br>Validité : ".substr($validity,0,-1)." Jour(s)";
 }else if(substr($validity,-1) == "h"){
@@ -15,24 +14,16 @@ if(substr($timelimit,-1) == "d" & strlen($timelimit) >3){
 }else if(substr($timelimit,-1) == "w"){
   $timelimit = "Durée:".(substr($timelimit,0,-1)*7)." Jour(s)";
 }	            	            
-if($getprice == "1500"){ $color = "#FFF";} 
+if($getprice == "1500"){ $color = "#F9CD6A";} 
 elseif($getprice == "100"){ $color = "#AAB2BD";}
 elseif($getprice == "300"){ $color = "#37BC9B";}
 elseif($getprice == "500"){ $color = "#DA4453";}
-elseif($getprice == "700"){ $color = "#4A89DC";}
-elseif($getprice == "1500"){ $color = "#F6BB42";}
+elseif($getprice == "700"){ $color = "#4165D5";}
+elseif($getprice == "1000"){ $color = "#4165D5";}
+elseif($getprice == "1500"){ $color = "#F9CD6A";}
 elseif($getprice == "3000"){ $color = "#D772AD";}
 elseif($getprice == "5000"){ $color = "#AC92EC";}
 elseif($getprice == "13000"){ $color = "#2E8B57";}
-elseif($getprice == "15000"){ $color = "#2E8B57";}
-elseif($getprice == "17000"){ $color = "#0000FF";}
-elseif($getprice == "20000"){ $color = "#0000FF";}
-elseif($getprice == "35000"){ $color = "#6495ED";} 
-elseif($getprice == "40000"){ $color = "#6495ED";} 
-elseif($getprice == "80000"){ $color = "#FF8C00";}
-elseif($getprice == "85000"){ $color = "#FF8C00";}
-elseif($getprice == "160000"){ $color = "#DC143C";} 
-elseif($getprice == "170000"){ $color = "#DC143C";} 
 else{ $color = "#FF69B4";}?>  
 <!--mks-mulai-->
 <table class="voucher" style="background:#FFF;margin: 1px;border: 1px solid <?php echo $color ?>; border-radius: 5px;">
@@ -46,7 +37,7 @@ else{ $color = "#FF69B4";}?>
 <tbody>	
 <P style=" margin-top:-10px;margin-bottom:5px"></P>
 <tr>
-<td colspan="2" style="font-weight:bold;">MAMBA WIFI</td>
+<td colspan="2" style="font-weight:bold;">MORIBO WIFI</td>
 </tr>
 <td>
 <table style="width:100%;"> 
@@ -70,10 +61,13 @@ P: <?= $password; ?></td>
 </tr> 
 <?php }?> 
 </tr> 
-<td colspan="2" style="border-radius: 5px;text-align: center; font-weight:bold;font-size: 6px;">
-<P style=" margin-top:-10px;margin-bottom:5px"></P>
-<?php echo $validity;?>
-<P style=" margin-top:-10px;margin-bottom:5px"></P> 
+<td colspan="2" style="border-radius: 5px;text-align: center; font-weight:bold;font-size: 6px; position: relative;">
+  <P style="margin-top:-10px;margin-bottom:5px"></P>
+	 <?php echo $validity; ?>
+	<P style="margin-top:-10px;margin-bottom:5px"></P>
+  <span style="position: absolute; top: 0; right: 0; font-size: 10px; color: <?php echo $color; ?>; font-weight: bold;">
+        <?= $num; ?>
+  </span>
 </td>
 </table>	
 </tr>	

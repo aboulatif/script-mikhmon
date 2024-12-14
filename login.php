@@ -1,4 +1,3 @@
-
 <?php
 /*
  *  Copyright (C) 2018 Laksamadi Guko.
@@ -31,14 +30,14 @@ session_start();
         <img src="img/favicon.png" alt="MIKHMON Logo">
       </div>
       <div  class="text-center">
-      <span style="font-size: 25px; margin: 10px;">MIKHMON BY MAMBA</span>
+      <span style="font-size: 25px; margin: 10px;">MIKHMON BY MAMBATECH</span>
       </div>
       <center>
       <form autocomplete="off" action="" method="post">
       <table class="table" style="width:90%">
         <tr>
           <td class="align-middle text-center">
-            <input style="width: 100%; height: 35px; font-size: 16px;" class="form-control" type="text" name="user" id="_username" placeholder="Utilisateur" required="1" autofocus>
+            <input style="width: 100%; height: 35px; font-size: 16px;" class="form-control" type="text" name="user" id="_username" placeholder="Nom d'utilisateur" required="1" autofocus>
           </td>
         </tr>
         <tr>
@@ -48,8 +47,9 @@ session_start();
         </tr>
         <tr>
           <td class="align-middle text-center">
-            <input style="width: 100%; margin-top:20px; height: 35px; font-weight: bold; font-size: 17px;" class="btn-login bg-primary pointer" type="submit" name="login" value="Se connecter">
+            <input style="width: 100%; margin-top:20px; height: 35px; font-weight: bold; font-size: 17px;" class="btn-login bg-primary pointer" type="submit" name="login" value="Se Connecter">
           </td>
+          <p>Contact : +225 07 09 10 05 52</p>
         </tr>
         <tr>
           <td class="align-middle text-center">
@@ -65,3 +65,4 @@ session_start();
 
 </body>
 </html>
+

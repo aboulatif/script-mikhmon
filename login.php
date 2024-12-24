@@ -23,7 +23,7 @@ session_start();
 <div style="padding-top: 5%;"  class="login-box">
   <div class="card">
     <div class="card-header">
-      <h3><?= $_please_login ?></h3>
+      <h3 class="align-middle text-center"><?= $_please_login ?></h3>
     </div>
     <div class="card-body">
       <div class="text-center pd-5">

@@ -25,6 +25,7 @@ Add sections for :
 
 
 NOUVEAU processus UX/UI avec l'IA - Économisez des MOIS de travail !
+https://www.youtube.com/watch?v=Rl5pZ7Cncyk
 
 Découvrez l'avenir de l'UX/UI grâce à l'IA ! Dans cette vidéo, je vous montre comment utiliser ChatGPT 4o + UX Pilot pour créer un système de conception complet, entraîner un modèle d'interface utilisateur sur votre système de conception, générer des écrans d'interface utilisateur et créer un prototype fonctionnel grâce à l'IA.
 

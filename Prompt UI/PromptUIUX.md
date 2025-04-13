@@ -41,3 +41,26 @@ Vidéo d’invites UI/UX →    • Claude Prompts For Your Next UI/UX Pr...
 ✉️ Newsletter AI Tooltip → https://www.aitooltip.io/subscribe
 Insta →   / aitooltip  
 
+
+✨ Modèle de brief de projet :
+Je lance un [type de produit] Appelé [Nom du produit], pour [utilisateurs cibles]. L'objectif est de [objectif principal]. Les utilisateurs peuvent [fonctionnalités]. Convertissez-le en un bref résumé du projet.
+
+✨ Invite Plan du site :
+À partir du résumé du projet, créez un plan du site en texte brut, présentant toutes les pages principales, leur hiérarchie et leurs interconnexions.
+
+✨ Invite Exigences UI :
+Décrivez la structure de l'interface utilisateur de cette page d'accueil, en texte brut, de haut en bas. N'incluez que les détails de mise en page et les blocs de contenu. Ne mentionnez aucun style ni aucune propriété visuelle.
+
+@uxpilotai 
+@lovable-labs 
+
+00:00 Introduction
+01:22 Structure
+02:34 Mise en page et contenu
+04:21 Exigences
+05:23 Système de conception
+09:37 Générer l'interface utilisateur
+11:21 Prototype
+12:11 Pack de conception
+12:49 Résultats du concours communautaire
+

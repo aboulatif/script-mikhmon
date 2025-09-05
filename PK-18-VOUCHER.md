@@ -1,4 +1,4 @@
-
+												
 																														<?php
 if(substr($validity,-1) == "d"){
   $validity = "   <br>Validité : ".substr($validity,0,-1)." Jour(s)";
@@ -16,7 +16,7 @@ if(substr($timelimit,-1) == "d" & strlen($timelimit) >3){
 }	            	            
 if($getprice == "1500"){ $color = "#F9CD6A";} 
 elseif($getprice == "200"){ $color = "#FF0000";}
-elseif($getprice == "500"){ $color = "#800000";}
+elseif($getprice == "500"){ $color = "#FFA07A";}
 elseif($getprice == "700"){ $color = "#FFFF00";}
 elseif($getprice == "1000"){ $color = "#808000";}
 elseif($getprice == "1500"){ $color = "#0000FF";}
@@ -78,4 +78,4 @@ P: <?= $password; ?></td>
 </td>
 </tr>
 </tbody>
-</table>		        	        	        	        	        	        	        	        	        	        	        	        	        	        	        	      
+</table>			        	        	        	        	        	        	        	        	        	        	        	        	        	        	        	      

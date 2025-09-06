@@ -1,4 +1,4 @@
-												
+																		
 																														<?php
 if(substr($validity,-1) == "d"){
   $validity = "   <br>Validité : ".substr($validity,0,-1)." Jour(s)";
@@ -78,4 +78,4 @@ P: <?= $password; ?></td>
 </td>
 </tr>
 </tbody>
-</table>			        	        	        	        	        	        	        	        	        	        	        	        	        	        	        	      
+</table>		        	        	        	        	        	        	        	        

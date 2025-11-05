@@ -1,0 +1,20 @@
+# feb/25/1970 16:25:03 by RouterOS 6.49.16
+# software id = R1LB-MZNF
+#
+# model = RBSXTsq5nD
+# serial number = HH00A6SR31F
+/interface bridge
+add name=bridge1
+/interface wireless
+set [ find default-name=wlan1 ] band=5ghz-a/n channel-width=20/40mhz-Ce \
+    country=no_country_set disabled=no frequency-mode=superchannel mode=\
+    station-bridge nv2-preshared-key=ABC@1234 nv2-security=enabled \
+    radio-name=PTP-LINK-STATION ssid=PTP-LINK-BASE
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/interface bridge port
+add bridge=bridge1 interface=all
+/ip address
+add address=10.10.0.70 interface=bridge1 network=10.10.0.70
+/system identity
+set name=Station

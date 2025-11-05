@@ -1,0 +1,20 @@
+# feb/21/1970 16:31:00 by RouterOS 6.49.16
+# software id = C7DE-7ME2
+#
+# model = RBSXTsq5nD
+# serial number = HH00A11AK4Q
+/interface bridge
+add name=bridge1
+/interface wireless
+set [ find default-name=wlan1 ] band=5ghz-a/n country=no_country_set \
+    disabled=no frequency-mode=superchannel mode=bridge nv2-preshared-key=\
+    ABC@1234 nv2-security=enabled radio-name=PTP-LINK-BASE ssid=PTP-LINK-BASE \
+    wds-default-bridge=bridge1 wds-mode=dynamic wireless-protocol=nv2
+/interface wireless security-profiles
+set [ find default=yes ] supplicant-identity=MikroTik
+/interface bridge port
+add bridge=bridge1 interface=all
+/ip address
+add address=10.10.0.50/24 interface=bridge1 network=10.10.0.0
+/system identity
+set name=base

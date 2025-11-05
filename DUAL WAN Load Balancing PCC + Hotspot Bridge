@@ -1,0 +1,123 @@
+
+Configuration complète – Dual WAN Load Balancing PCC + Hotspot Bridge
+
+
+
+# ===========================
+# CONFIGURATION DE BASE L009 (RouterOS v7.19.1)
+# ===========================
+
+/interface bridge
+add name=HOTSPOT comment="Bridge LAN + WiFi"
+
+/interface ethernet
+set [ find default-name=ether1 ] name=E1-WAN-FAI comment="FAI 1 (200 Mbps)"
+set [ find default-name=ether2 ] name=E2-WAN-FAI comment="FAI 2 (50 Mbps)"
+set [ find default-name=ether3 ] name=ether3-LAN comment="Port LAN principal"
+
+/interface wifiwave2
+set [ find default-name=wifi1 ] configuration.ssid="MikroTik" disabled=no
+
+/interface list
+add name=WAN
+add name=LAN
+
+/interface bridge port
+add bridge=HOTSPOT interface=ether3-LAN
+add bridge=HOTSPOT interface=ether4
+add bridge=HOTSPOT interface=ether5
+add bridge=HOTSPOT interface=wifi1
+
+/interface list member
+add interface=E1-WAN-FAI list=WAN
+add interface=E2-WAN-FAI list=WAN
+add interface=HOTSPOT list=LAN
+
+# ===========================
+# POOL DHCP
+# ===========================
+/ip pool
+add name=POOL-HOTSPOT ranges=10.0.0.10-10.255.255.254
+
+/ip dhcp-server
+add name=SERVER-HOTSPOT interface=HOTSPOT address-pool=POOL-HOTSPOT add-arp=yes disabled=no
+
+/ip dhcp-server network
+add address=10.0.0.0/8 gateway=10.0.0.1 dns-server=10.0.0.1,1.1.1.1 netmask=8
+
+# ===========================
+# ADRESSAGE & DNS
+# ===========================
+/ip address
+add address=10.0.0.1/8 interface=HOTSPOT comment="Gateway LAN"
+
+/ip dns
+set allow-remote-requests=yes servers=208.67.222.222,8.8.8.8
+
+# ===========================
+# DHCP CLIENTS WAN
+# ===========================
+/ip dhcp-client
+add interface=E1-WAN-FAI use-peer-dns=no add-default-route=no disabled=no
+add interface=E2-WAN-FAI use-peer-dns=no add-default-route=no disabled=no
+
+# ===========================
+# FIREWALL BASIQUE
+# ===========================
+/ip firewall connection tracking
+set udp-timeout=30s
+
+/ip firewall nat
+add chain=srcnat out-interface=E1-WAN-FAI action=masquerade comment="NAT ISP1"
+add chain=srcnat out-interface=E2-WAN-FAI action=masquerade comment="NAT ISP2"
+
+# ===========================
+# MANGLE POUR PCC LOAD BALANCING
+# ===========================
+
+# --- Reset les marquages ---
+/ip firewall mangle
+remove [find]
+
+# --- Ne pas router le trafic local ---
+add chain=prerouting dst-address=10.0.0.0/8 action=accept comment="Bypass LAN"
+
+# --- Marquer les connexions selon PCC ---
+add chain=prerouting in-interface=HOTSPOT per-connection-classifier=both-addresses:3/0 action=mark-connection new-connection-mark=ISP1_conn passthrough=yes comment="1/3 -> ISP1"
+add chain=prerouting in-interface=HOTSPOT per-connection-classifier=both-addresses:3/1 action=mark-connection new-connection-mark=ISP1_conn passthrough=yes comment="2/3 -> ISP1"
+add chain=prerouting in-interface=HOTSPOT per-connection-classifier=both-addresses:3/2 action=mark-connection new-connection-mark=ISP2_conn passthrough=yes comment="3/3 -> ISP2"
+
+# --- Marquer le routage selon les connexions ---
+add chain=prerouting in-interface=HOTSPOT connection-mark=ISP1_conn action=mark-routing new-routing-mark=to_ISP1 passthrough=yes
+add chain=prerouting in-interface=HOTSPOT connection-mark=ISP2_conn action=mark-routing new-routing-mark=to_ISP2 passthrough=yes
+
+# --- Marquer les paquets sortants ---
+add chain=output connection-mark=ISP1_conn action=mark-routing new-routing-mark=to_ISP1 passthrough=yes
+add chain=output connection-mark=ISP2_conn action=mark-routing new-routing-mark=to_ISP2 passthrough=yes
+
+# ===========================
+# ROUTES POUR CHAQUE FAI
+# ===========================
+/ip route
+add dst-address=0.0.0.0/0 gateway=192.168.1.254% E1-WAN-FAI routing-table=to_ISP1 distance=1
+add dst-address=0.0.0.0/0 gateway=192.168.1.254% E2-WAN-FAI routing-table=to_ISP2 distance=1
+add dst-address=0.0.0.0/0 gateway=192.168.1.254% E1-WAN-FAI,192.168.1.254% E2-WAN-FAI distance=1 comment="Load Balancing PCC"
+
+# ===========================
+# FILE D’ATTENTE / QUEUE
+# ===========================
+/queue simple
+add name=ISP1 target=E1-WAN-FAI max-limit=200M/200M
+add name=ISP2 target=E2-WAN-FAI max-limit=50M/50M
+
+# ===========================
+# DIVERS
+# ===========================
+/ip settings
+set max-neighbor-entries=4096
+
+/system clock
+set time-zone-name=Africa/Abidjan
+
+/ip cloud
+set ddns-enabled=yes

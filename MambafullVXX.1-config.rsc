@@ -300,10 +300,7 @@ add address-pool=POOL-HOTSPOT name=05-MINS on-login=":put (\",remc,10,5m,10,,D\
     MINS-|-\$comment\" owner=\"\$month\$year\" source=\$date comment=mikhmon}}\
     \r\
     \n" parent-queue=none
-/port
-set 0 name=serial0
-/container
-add interface=MIKHMON root-dir=usb1/mikhmonv3 start-on-boot=yes workdir=/src
+
 /container config
 set registry-url=https://registry-1.docker.io tmpdir=usb1/pull
 /interface bridge port
@@ -317,8 +314,7 @@ add bridge=HOTSPOT interface=ether8
 add bridge=HOTSPOT interface=ether9
 add bridge=HOTSPOT interface=ether10
 add bridge=DOCKERS interface=MIKHMON
-/ip neighbor discovery-settings
-set discover-interface-list=!dynamic
+
 /interface list member
 add interface=E1-WAN-FAI list=WAN
 add interface=HOTSPOT list=LAN
@@ -409,15 +405,8 @@ add action=accept chain=output comment="Section Break" disabled=yes
 add action=accept chain=output comment="Section Break" disabled=yes
 add action=drop chain=input comment=drop_inconnu_mikhmon dst-address-list=\
     !IP2Location_CI dst-port=8088 in-interface-list=WAN protocol=tcp
-/ip firewall mangle
-add action=change-ttl chain=postrouting new-ttl=set:1 out-interface=HOTSPOT \
-    passthrough=no
+
 /ip firewall nat
-add action=passthrough chain=unused-hs-chain comment=\
-    "place hotspot rules here" disabled=yes
-add action=masquerade chain=srcnat out-interface=E1-WAN-FAI
-add action=masquerade chain=srcnat comment="masquerade hotspot network" \
-    src-address=10.0.0.0/8
 add action=masquerade chain=srcnat comment="Docker NAT" src-address=\
     11.11.11.0/28
 add action=dst-nat chain=dstnat comment="ACCES DISTANT" dst-port=8088 \
@@ -463,18 +452,13 @@ set api-ssl disabled=yes
 set time-zone-name=Africa/Abidjan
 /system identity
 set name=HSPT-MIRADOR
-/system logging
-add action=disk prefix=-> topics=hotspot,info,debug
-/system note
-set show-at-login=no
+
 /system ntp client
 set enabled=yes
 /system ntp client servers
 add address=196.200.131.160
 add address=196.10.52.57
-/system routerboard settings
-# Firmware upgraded successfully, please reboot for changes to take effect!
-set auto-upgrade=yes enter-setup-on=delete-key
+
 /system scheduler
 add interval=1d name=CLEAN_JOB on-event="/sys sch rem [find where on-event=\"\
     \"];\r\
@@ -649,19 +633,4 @@ add comment="Monitor Profile 05-MINS" interval=2m44s name=05-MINS on-event=":l\
     \_remove [find where user=\$name] ];}}}" policy=\
     ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon \
     start-date=2025-07-23 start-time=05:57:13
-/system script
-add comment=mikhmon dont-require-permissions=no name="2025-07-23-|-16:11:58-|-\
-    5mew2n-|-10-|-10.255.255.252-|-D0:C0:BF:29:48:73-|-5m-|-05-MINS-|-vc-302-0\
-    7.23.25-" owner=202-23 policy=\
-    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source=\
-    2025-07-23
-add comment=mikhmon dont-require-permissions=no name="jul/23/2025-|-16:34:31-|\
-    -5m-|-10-|-10.10.3.253-|-D0:C0:BF:29:48:73-|-5m-|-05-MINS-|-" owner=\
-    jul2025 policy=\
-    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source=\
-    jul/23/2025
-add comment=mikhmon dont-require-permissions=no name="jul/23/2025-|-17:11:58-|\
-    -c7n-|-10-|-10.10.3.253-|-D0:C0:BF:29:48:73-|-5m-|-05-MINS-|-vc-269-07.23.\
-    25-" owner=jul2025 policy=\
-    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source=\
-    jul/23/2025
+

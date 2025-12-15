@@ -1,8 +1,5 @@
 # 2025-07-23 18:04:38 by RouterOS 7.18.1
-# software id = 8F6M-MUZK
-#
-# model = RB3011UiAS
-# serial number = B88D0A6EDF25
+
 /interface bridge
 add name=DOCKERS
 add name=HOTSPOT

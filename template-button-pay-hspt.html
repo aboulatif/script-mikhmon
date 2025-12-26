@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat Ticket WiFi</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background: #0d6efd;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .tickets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* Carte cliquable */
+        .ticket {
+            display: block;
+            text-decoration: none;
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: inherit;
+        }
+
+        .ticket:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .ticket h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #0d6efd;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .duration {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pay-btn {
+            margin-top: 15px;
+            display: inline-block;
+            background: #0d6efd;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Connexion Internet – Achat de Ticket WiFi</h1>
+    <p>Sélectionnez un forfait et procédez au paiement</p>
+</header>
+
+<div class="container">
+    <div class="tickets">
+
+        <!-- Ticket 1 jour -->
+        <a href="https://paiement.exemple.com/200" class="ticket">
+            <h2>Forfait Journalier</h2>
+            <div class="price">200 FCFA</div>
+            <div class="duration">Validité : 1 jour</div>
+            <div class="pay-btn">Payer maintenant</div>
+        </a>
+
+        <!-- Ticket 5 jours -->
+        <a href="https://paiement.exemple.com/500" class="ticket">
+            <h2>Forfait 5 Jours</h2>
+            <div class="price">500 FCFA</div>
+            <div class="duration">Validité : 5 jours</div>
+            <div class="pay-btn">Payer maintenant</div>
+        </a>
+
+        <!-- Ticket 1 semaine -->
+        <a href="https://paiement.exemple.com/700" class="ticket">
+            <h2>Forfait Hebdomadaire</h2>
+            <div class="price">700 FCFA</div>
+            <div class="duration">Validité : 7 jours</div>
+            <div class="pay-btn">Payer maintenant</div>
+        </a>
+
+        <!-- Ticket 1 mois -->
+        <a href="https://paiement.exemple.com/2000" class="ticket">
+            <h2>Forfait Mensuel</h2>
+            <div class="price">2000 FCFA</div>
+            <div class="duration">Validité : 30 jours</div>
+            <div class="pay-btn">Payer maintenant</div>
+        </a>
+
+    </div>
+</div>
+
+<footer>
+    © 2025 - Service WiFi Village | Propulsé par MikroTik & Starlink
+</footer>
+
+</body>
+</html>

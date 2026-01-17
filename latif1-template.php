@@ -1,4 +1,4 @@
-
+						
 												<!-- 
     Mini Voucher Template (60/A4 Optimized)
     Target: 5 columns x 12 rows = 60 items per page
@@ -12,15 +12,40 @@ if (strpos($p, '100') !== false) {
     $colorClass = "bg-100";
 } elseif (strpos($p, '200') !== false) {
     $colorClass = "bg-200";
-} elseif (strpos($p, '3000') !== false) { // Check 3000 before 300 to avoid partial match issues if strictly checking numbers, though with '3000' vs '300' order matters if just containing.
+} elseif (strpos($p, '500') !== false) {
+    $colorClass = "bg-500";
+} elseif (strpos($p, '700') !== false) {
+    $colorClass = "bg-700";
+} elseif (strpos($p, '1000') !== false) {
+    $colorClass = "bg-1000";
+} elseif (strpos($p, '1500') !== false) {
+    $colorClass = "bg-1500";
+} elseif (strpos($p, '2000') !== false) {
+    $colorClass = "bg-2000";
+} elseif (strpos($p, '3000') !== false) {
     $colorClass = "bg-3000";
 } elseif (strpos($p, '300') !== false) {
     $colorClass = "bg-300";
-} elseif (strpos($p, '500') !== false) {
-    $colorClass = "bg-500";
-} elseif (strpos($p, '1000') !== false) {
-    $colorClass = "bg-1000";
 } 
+
+// Format validity display
+if (!empty($validity)) {
+    // Check if validity ends in 'd' (days)
+    if (preg_match('/^(\d+)d$/', strtolower($validity), $matches)) {
+        $days = intval($matches[1]);
+        if ($days == 1) {
+            $validity = "01-JOUR";
+        } elseif ($days == 7) {
+            $validity = "01-SEMAINE";
+        } elseif ($days == 14) {
+             $validity = "02-SEMAINES";
+        } elseif ($days == 30) {
+            $validity = "01-MOIS";
+        } else {
+            $validity = sprintf("%02d-JOURS", $days);
+        }
+    }
+}
 ?>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap');
@@ -31,7 +56,10 @@ if (strpos($p, '100') !== false) {
     .bg-200 { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); /* Blue */ }
     .bg-300 { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); /* Cyan */ }
     .bg-500 { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); /* Purple */ }
+    .bg-700 { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); /* Teal */ }
     .bg-1000 { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* Orange */ }
+    .bg-1500 { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); /* Indigo */ }
+    .bg-2000 { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); /* Pink */ }
     .bg-3000 { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); /* Red */ }
 
     /* Print settings to ensure A4 fit */
@@ -94,8 +122,8 @@ if (strpos($p, '100') !== false) {
     }
 
     .code-text {
-        font-size: 14px; /* Increased from 11px */
-        font-weight: 700;
+        font-size: 18px; /* Increased from 14px */
+        font-weight: 800;
         color: #2d3748;
         word-break: break-all;
         line-height: 1.1;
@@ -172,8 +200,12 @@ if (strpos($p, '100') !== false) {
 
         <div class="footer-meta">
             <?php if(!empty($validity)) { ?><span class="meta-badge"><?= $validity; ?></span><?php } ?>
-            <?php if(!empty($price)) { ?><span class="meta-badge"><?= $price; ?></span><?php } ?>
+            <?php if(!empty($price)) { 
+                $displayPrice = trim(str_ireplace(['fcfa', 'FCFA'], '', $price));
+                $displayPrice = str_replace('.00', '', $displayPrice);
+                ?><span class="meta-badge"><?= $displayPrice . ' fcfa'; ?></span><?php 
+            } ?>
         </div>
     </div>
 </div>
-	        	        
+	        	        	        

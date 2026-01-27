@@ -1,4 +1,4 @@
-						
+												
 												<!-- 
     Mini Voucher Template (60/A4 Optimized)
     Target: 5 columns x 12 rows = 60 items per page
@@ -208,4 +208,3 @@ if (!empty($validity)) {
         </div>
     </div>
 </div>
-	        	        	        
